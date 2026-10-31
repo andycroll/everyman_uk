@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.0.0] - Unreleased
+## [1.0.0] - 2026-10-31
 
 ### Added
 - `EverymanUk::Cinema.all` and `EverymanUk::Cinema.new(id)` for Everyman's open UK cinemas, read from the theatre list in the everymancinema.com daily build, with addresses, postcodes and `latitude`/`longitude`.
