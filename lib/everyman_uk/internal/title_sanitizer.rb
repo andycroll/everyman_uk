@@ -18,8 +18,9 @@ module EverymanUk
       # strings and regex to be removed
       def remove
         [
-          /\AMembers['’]? Preview:\s*/i, # members' screening ahead of release
-          /\s+presented by [^:()]+\z/i   # partner's screening
+          /\AMembers['’]? Preview:\s*/i,             # members' screening ahead of release
+          /\A(?:\w+ )*Event Screening\s*[-–:]\s*/i,  # themed event screening
+          /\s+(?:[-–]\s+)?presented by [^:()]+\z/i   # partner's screening
         ] + COMMON_REMOVE
       end
 

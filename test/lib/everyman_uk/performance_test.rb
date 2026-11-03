@@ -86,6 +86,18 @@ class EverymanUk::PerformanceTest < Minitest::Test
     assert_raises(ArgumentError) { EverymanUk::Performance.at('X0712', from: DATE, to: DATE - 1) }
   end
 
+  def test_new_names_event_from_raw_title
+    title = 'Met Opera 2026-27: Tosca'
+    performance = EverymanUk::Performance.new(
+      film_name: EverymanUk::Internal::TitleSanitizer.new(title).sanitized, title: title,
+      cinema_id: 'X0712', cinema_name: 'Baker Street', starting_at: Time.utc(2026, 10, 24, 13, 0)
+    )
+
+    assert_equal 'Tosca', performance.film_name
+    assert_equal Cinebase::Event.new(name: 'Met Opera'), performance.event
+    assert_equal %w(arts), performance.variant
+  end
+
   def test_new_sets_defaults
     performance = EverymanUk::Performance.new(
       film_name: 'Carol', cinema_id: 'X0712', cinema_name: 'Baker Street',
