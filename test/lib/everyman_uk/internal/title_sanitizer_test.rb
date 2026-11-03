@@ -9,6 +9,15 @@ class EverymanUk::Internal::TitleSanitizerTest < Minitest::Test
     assert_sanitized "Ken Russell's The Devils", "Ken Russell's The Devils presented by Example Film Club"
   end
 
+  def test_removes_presenting_partner_after_a_dash
+    assert_sanitized 'Primetime', 'Primetime - Presented by Deeper Into Movies'
+  end
+
+  def test_removes_event_screening_label
+    assert_sanitized 'The Hunger Games: Sunrise on the Reaping',
+                     'Sunrise Event Screening - The Hunger Games: Sunrise on the Reaping'
+  end
+
   def test_removes_film_year
     assert_sanitized 'Hocus Pocus', 'Hocus Pocus (1993)'
   end
